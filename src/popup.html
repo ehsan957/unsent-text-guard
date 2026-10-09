@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  :root {
+    --bg: #f4f1ea; --panel: #fff; --ink: #1f2a37; --muted: #5f6b78;
+    --line: #d9d3c7; --accent: #b4532a; --ok: #2f7d4f; --focus: #2b6cb0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1d22; --panel: #23272e; --ink: #e8e6e1; --muted: #a3a9b1;
+      --line: #3a3f47; --accent: #e08a5c; --ok: #6cc28f; --focus: #7fb3ec;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; width: 330px; padding: 16px;
+    background: var(--bg); color: var(--ink);
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif; font-size: 14px;
+  }
+  h1 { font-size: 16px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+  h1 img { width: 22px; height: 22px; }
+  .status {
+    background: var(--panel); border: 1.5px solid var(--line); border-radius: 10px;
+    padding: 10px 12px; margin-bottom: 12px; line-height: 1.4;
+  }
+  .status.warn { border-color: var(--accent); }
+  .status.ok b { color: var(--ok); }
+  .status.warn b { color: var(--accent); }
+  .row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .row label { flex: 1; }
+  input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent); }
+  input[type="number"] {
+    width: 64px; font: inherit; padding: 4px 6px; border-radius: 6px;
+    border: 1.5px solid var(--line); background: var(--panel); color: var(--ink);
+  }
+  input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .note { color: var(--muted); font-size: 12px; line-height: 1.45; margin: 4px 0 0; }
+  #host { font-weight: 600; word-break: break-all; }
+</style>
+</head>
+<body>
+  <h1><img src="icon-48.png" alt="">Unsent Text Guard</h1>
+
+  <div id="status" class="status" role="status">Checking this page…</div>
+
+  <div class="row" id="site-row" hidden>
+    <input type="checkbox" id="site">
+    <label for="site">Guard <span id="host"></span></label>
+  </div>
+
+  <div class="row">
+    <label for="min">Warn when I've typed at least</label>
+    <input type="number" id="min" min="1" max="1000" step="1"> 
+  </div>
+  <p class="note">characters. Text the website filled in by itself is never counted, only what you typed or pasted.</p>
+
+  <script src="popup.js"></script>
+</body>
+</html>

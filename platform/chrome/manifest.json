@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Unsent Text Guard",
+  "version": "1.0",
+  "description": "Warns you before you close or leave a page where you typed text you haven't sent yet. Text the site filled in itself is ignored.",
+  "author": { "email": "ehsan.shariaty@gmail.com" },
+  "homepage_url": "https://grizzly.ir",
+  "icons": { "16": "icon-16.png", "32": "icon-32.png", "48": "icon-48.png", "128": "icon-128.png" },
+  "permissions": ["storage"],
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content.js"],
+    "all_frames": true,
+    "run_at": "document_start"
+  }],
+  "action": {
+    "default_title": "Unsent Text Guard",
+    "default_popup": "popup.html",
+    "default_icon": { "16": "icon-16.png", "32": "icon-32.png", "48": "icon-48.png" }
+  },
+  "minimum_chrome_version": "102"
+}
